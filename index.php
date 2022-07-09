@@ -5,4 +5,9 @@ require_once './config/db.php';
 require_once './controller/notes.php';
 
 $controller = new Notes;
-$controller -> getNotes();
+if (isset($_GET['v'])) {
+  $action = $_GET['v'];
+  $controller -> $action();
+} else {
+  $controller -> index();
+}
