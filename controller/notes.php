@@ -17,8 +17,8 @@ class Notes {
   /* Create notes */
   public function createNote() {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-      $noteTitle = $_POST['inputTitle'];
-      $noteContent = $_POST['inputContent'];
+      $noteTitle = htmlspecialchars($_POST['inputTitle']);
+      $noteContent = htmlspecialchars($_POST['inputContent']);
       $error = null;
       if (empty($noteTitle) || empty($noteContent)) {
         $error = "Do not leave empty spaces";
@@ -38,8 +38,8 @@ class Notes {
     $execute = new NotesModel;
     $note = $execute -> getNote($id);
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-      $noteTitle = $_POST['inputTitle'];
-      $noteContent = $_POST['inputContent'];
+      $noteTitle = htmlspecialchars($_POST['inputTitle']);
+      $noteContent = htmlspecialchars($_POST['inputContent']);
       $error = null;
       if (empty($noteTitle) || empty($noteContent)) {
         $error = "Do not leave empty spaces";
