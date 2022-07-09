@@ -7,7 +7,7 @@ class NotesModel{
     $this->db = Connection::database();
   }
   public function getAllNotes() {
-    $stmtp = $this->db -> prepare("SELECT * FROM `notes`");
+    $stmtp = $this->db -> prepare("SELECT * FROM `notes` ORDER BY id_note DESC");
     $stmtp -> execute();
     $this->notes = $stmtp->fetchAll();
     return $this->notes;
