@@ -21,10 +21,11 @@
     <form method="POST">
       <div class="mb-3">
         <label for="formGroupExampleInput" class="form-label">New Note</label>
-        <input name="inputTitle" type="text" class="form-control" id="formGroupExampleInput" placeholder="Note title">
+        <input name="inputTitle" type="text" class="form-control" id="formGroupExampleInput" placeholder="Note title"
+        value="<?php if ($_SERVER['REQUEST_METHOD'] == 'POST') { echo $noteTitle; } ?>">
       </div>
       <div class="form-floating mb-3">
-        <textarea name="inputContent" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+        <textarea name="inputContent" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"><?php if ($_SERVER['REQUEST_METHOD'] == 'POST') { echo $noteContent; } ?></textarea>
         <label for="floatingTextarea2">Note content</label>
       </div>
       <button type="submit" class="btn btn-primary">Create Note</button>
