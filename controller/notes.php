@@ -54,4 +54,12 @@ class Notes {
     $this->execute -> deleteNote($id);
     header('Location: index.php');
   }
+  public function readNote() {
+    $id = $_GET['id'];
+    if(empty($id)) {
+      header('Location: index.php');
+    }
+    $note = $this->execute -> getNote($id);
+    require_once './view/read.php';
+  }
 }

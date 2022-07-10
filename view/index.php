@@ -35,7 +35,7 @@
                 <h5 class="card-title"><?php echo $note['title_note']; ?></h5>
                 <p class="card-text">
                   <?php echo $newContent; ?>
-                  <a href="?v=readNote$id=<?php echo $note['id_note']; ?>">
+                  <a href="?v=readNote&id=<?php echo $note['id_note']; ?>">
                     <?php if(strlen($newContent) == $limitOfChars) {echo 'Read more...';} ?>
                   </a>
                 </p>
