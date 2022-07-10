@@ -1,6 +1,4 @@
 <?php require_once './controller/notes.php'; ?>
-
-
 <!doctype html>
 <html lang="en">
 
@@ -28,11 +26,19 @@
           </h1>
         <?php } ?>
         <div class="row row-cols-2">
-          <?php foreach ($dates as $note) { ?>
+              <?php
+              foreach ($dates as $note) {
+                $newContent = substr($note['content_note'],0, $limitOfChars);
+              ?>
             <div class="card">
               <div class="card-body pb-2">
                 <h5 class="card-title"><?php echo $note['title_note']; ?></h5>
-                <p class="card-text"><?php echo $note['content_note']; ?></p>
+                <p class="card-text">
+                  <?php echo $newContent; ?>
+                  <a href="?v=readNote$id=<?php echo $note['id_note']; ?>">
+                    <?php if(strlen($newContent) == $limitOfChars) {echo 'Read more...';} ?>
+                  </a>
+                </p>
                 <div class="">
                   <a href="?v=editNote&id=<?php echo $note['id_note']; ?>" class="btn btn-primary">Edit card</a>
                   <a href="?v=deleteNote&id=<?php echo $note['id_note']; ?>" type="button" class="btn btn-danger">Delete</a>

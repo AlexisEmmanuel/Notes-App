@@ -9,6 +9,7 @@ class Notes {
     $execute = new NotesModel;
     $dates = $execute -> getAllNotes();
     $error = null;
+    $limitOfChars = 140;
     if (empty($dates)) {
       $error = "No notes available";
     }
