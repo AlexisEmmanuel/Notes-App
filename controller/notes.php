@@ -1,13 +1,14 @@
 <?php
 
 class Notes {
+  private $execute;
   public function __construct() {
     require_once './model/NotesModel.php';
+    $this->execute = new NotesModel;
   }
   /* Get notes */
   public function index() {
-    $execute = new NotesModel;
-    $dates = $execute -> getAllNotes();
+    $dates = $this->execute -> getAllNotes();
     $error = null;
     $limitOfChars = 140;
     if (empty($dates)) {
@@ -24,8 +25,7 @@ class Notes {
       if (empty($noteTitle) || empty($noteContent)) {
         $error = "Do not leave empty spaces";
       } else {
-        $execute = new NotesModel;
-        $execute -> createNewNote($noteTitle, $noteContent);
+        $this->execute -> createNewNote($noteTitle, $noteContent);
         header('Location: index.php');
       }
     }
@@ -36,8 +36,7 @@ class Notes {
     if(empty($id)) {
       header('Location: index.php');
     }
-    $execute = new NotesModel;
-    $note = $execute -> getNote($id);
+    $note = $this->execute -> getNote($id);
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $noteTitle = htmlspecialchars($_POST['inputTitle']);
       $noteContent = htmlspecialchars($_POST['inputContent']);
@@ -45,15 +44,14 @@ class Notes {
       if (empty($noteTitle) || empty($noteContent)) {
         $error = "Do not leave empty spaces";
       } else {
-        $execute -> updateNote($id, $noteTitle, $noteContent);
+        $this->execute -> updateNote($id, $noteTitle, $noteContent);
       }
     }
     require_once './view/edit.php';
   }
   public function deleteNote() {
     $id = $_GET['id'];
-    $execute = new NotesModel;
-    $execute -> deleteNote($id);
+    $this->execute -> deleteNote($id);
     header('Location: index.php');
   }
 }
