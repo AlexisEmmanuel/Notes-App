@@ -7,7 +7,7 @@ class Notes {
     $this->execute = new NotesModel;
   }
   /* Get notes */
-  public function index() {
+  public function getNotes() {
     $dates = $this->execute -> getAllNotes();
     $error = null;
     $limitOfChars = 140;
